@@ -29,6 +29,8 @@ urlpatterns = [
 
     #service pages
     path('view_service/',views.view_service,name="view_service"),
+    # path('view_service/',views.view_service,name="view_service"),
+
 
 
     #booking pages
