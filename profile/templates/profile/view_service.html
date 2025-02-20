@@ -1,0 +1,70 @@
+
+{% extends "profile/home.html" %}
+{% load static %}
+{% block content %}
+<div class="container mt-5">
+    <div class="row">
+        {% for service in services %}
+        <div class="col-md-4 mb-4">
+            <div class="card">
+                <img src="{#% static 'profile/images/person-4.png' %}" class="card-img-top" alt="{{ service.s_name }}">
+                <div class="card-body">
+                    <h5 class="card-title">{{ service.s_name }}</h5>
+                    <p class="card-text">{{ service.s_description }}</p>
+                    <!-- <p><strong>Price:</strong> ₹{{ service.s_price }}</p>
+                    <p><strong>Electrician:</strong> {{ service.e_id.e_fullname }}</p> -->
+                    <div id="details-{{ service.s_id }}" class="service-details my-3" style="display: none;">
+                        <p><strong>Price:</strong> ₹{{ service.s_price }}</p>
+                        <p><strong>Electrician:</strong> {{ service.e_id.e_fullname }}</p>
+                        <p><strong>Qualification:</strong> {{ service.e_id.e_qualification }}</p>
+                       
+                        
+                        <form action="{% url 'save_booking' service.s_id %}" method="post" onsubmit="return confirmBooking();">
+                            {% csrf_token %}
+                            <input type="hidden" name="service_id" value="{{ service.s_id }}">
+                            <button class="btn btn-primary" type="submit">Book Now</button>
+                        </form>
+
+                    </div>
+                    <button class="btn btn-primary " onclick="toggleDetails('{{ service.s_id }}')">View Details</button>
+                  
+                </div>
+            </div>
+        </div>
+        {% empty %}
+        <p>No services available.</p>
+        {% endfor %}
+    </div>
+</div>
+
+<script>
+    function confirmBooking() {
+    return confirm('Are you sure you want to confirm this booking?');
+}
+
+   function toggleDetails(serviceId) {
+    var detailsElement = document.getElementById('details-' + serviceId);
+    var bookButton = document.getElementById('book-btn-' + serviceId);
+
+    // Toggle the display of the service details and the Book Now button
+    if (detailsElement.style.display === "none" || detailsElement.style.display === "") {
+        detailsElement.style.display = "block";  // Show the details
+        bookButton.style.display = "block";      // Show the Book Now button
+    } else {
+        detailsElement.style.display = "none";  // Hide the details
+        bookButton.style.display = "none";      // Hide the Book Now button
+    }
+}
+
+function bookService(serviceId) {
+    // Handle the booking process here
+    alert('Booking service with ID: ' + serviceId);
+    // You can redirect to a booking page or show a booking form here
+}
+
+</script>
+<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+<script src="{% static 'js/script.js' %}"></script>
+{% endblock %}

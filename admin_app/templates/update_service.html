@@ -1,0 +1,52 @@
+{% extends "admin_dashboard.html" %}
+{% block content %}
+<div class="container mt-5">
+        <div class="row justify-content-center">
+            <div class="col-md-6">
+                <div class="card shadow-lg">
+                    <div class="card-header text-center bg-info text-white">
+                        <h4>Create Event</h4>
+                    </div>
+                    <div class="card-body">
+                        <form method="post" action="{% url "admin_app:update_service" service.s_id  %}">
+                            {% csrf_token %}
+                            <!-- service name -->
+                            <div class="mb-3">
+                                <label for="service_name" class="form-label">Service name</label>
+                                <input type="text" id="service_name" class="form-control" value="{{service.s_name}}" name="s_name" placeholder="Enter service name" required>
+                            </div>
+
+                            <!-- service description -->
+                            <div class="mb-3">
+                                <label for="service_description" class="form-label">Description</label>
+                                <textarea id="service_description" class="form-control" name="s_description" placeholder="Enter service description" rows="3" required>{{service.s_description}}</textarea>
+                            </div>
+
+                            <div class="mb-3">
+                                <label for="service_price" class="form-label">Service price</label>
+                                <input type="text" id="service_price" class="form-control" value="{{service.s_price}}" name="s_price" placeholder="Enter service price" required>
+                            </div>
+
+                            <div class="form-group">
+                                <label for="e_id">Select Electrician</label>
+                                <select name="e_id" class="form-control" required>
+                                    <option value="" disabled selected>-- Select Electrician --</option>
+                                    {% for electrician in electricians %}
+                                        <option value="{{ electrician.e_id }}" {% if electrician.e_id == service.e_id.e_id %}selected{% endif %}>
+                                            {{ electrician.e_fullname }}
+                                        </option>
+                                    {% endfor %}
+                                </select>
+                            </div>
+
+                            <!-- Buttons -->
+                            <div class="d-grid gap-2">
+                                <button type="submit" class="btn btn-info">Update</button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}

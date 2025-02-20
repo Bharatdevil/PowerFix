@@ -1,0 +1,54 @@
+   <!-- service lists -->
+   <div class="container mt-5">
+    <h2 class="text-center">Our Services</h2>
+    <div class="row">
+        <!-- Static Service Card 1 -->
+        <div class="col-md-4 mb-4">
+            <div class="card" >
+                <img src="{% static 'services/images/person-4.png' %}" class="card-img-top" alt="Lighting Design"  width="300" height="200" style="object-fit: cover; ">
+                <div class="card-body">
+                    <h5 class="card-title">Electrical Repair</h5>
+                    <p class="card-text">Expert electrical repair services for your home or office.</p>
+                    <p class="card-text"><strong>Price:</strong> $100</p>
+                    <p class="card-text"><strong>Duration:</strong> 2 hours</p>
+                    <p class="card-text"><strong>Electrician:</strong> John Doe</p>
+                    <p class="card-text"><strong>Experience:</strong> 5 years</p>
+                    <p class="card-text"><strong>Qualification</strong> BE </p>
+                    <a href="{% url "book_service" %}" class="btn btn-primary">Book Now</a>
+                </div>
+            </div>
+        </div>
+        <!-- Static Service Card 2 -->
+        <div class="col-md-4 mb-4">
+            <div class="card">
+                <img src="{% static 'services/images/person-4.png' %}" class="card-img-top" alt="Lighting Design">
+                <div class="card-body">
+                    <h5 class="card-title">Installation Service</h5>
+                    <p class="card-text">Professional installation of electrical systems and appliances.</p>
+                    <p class="card-text"><strong>Price:</strong> $150</p>
+                    <p class="card-text"><strong>Duration:</strong> 3 hours</p>
+                    <p class="card-text"><strong>Electrician:</strong> Jane Smith</p>
+                    <p class="card-text"><strong>Experience:</strong> 8 years</p>
+                    <p class="card-text"><strong>Qualification</strong> BE </p>
+                    <a href="{% url "book_service" %}" class="btn btn-primary">Book Now</a>
+                </div>
+            </div>
+        </div>
+        <!-- Static Service Card 3 -->
+        <div class="col-md-4 mb-4">
+            <div class="card">
+                <img src="{% static 'services/images/person-4.png' %}" class="card-img-top" alt="Lighting Design">
+                <div class="card-body">
+                    <h5 class="card-title">Lighting Design</h5>
+                    <p class="card-text">Creative lighting solutions tailored to your needs.</p>
+                    <p class="card-text"><strong>Price:</strong> $200</p>
+                    <p class="card-text"><strong>Duration:</strong> 4 hours</p>
+                    <p class="card-text"><strong>Electrician:</strong> Mike Johnson</p>
+                    <p class="card-text"><strong>Experience:</strong> 10 years</p>
+                    <p class="card-text"><strong>Qualification</strong> BE </p>
+                    <a href="{% url "book_service" %}" class="btn btn-primary">Book Now</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

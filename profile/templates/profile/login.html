@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login</title>
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+</head>
+<body>
+    <div class="container mt-5">
+        <h2 class="text-center">Select Your Role</h2>
+        <form method="post" action="{% url 'role_redirect' %}" class="mt-4">
+            {% csrf_token %}
+            <div class="form-group mx-auto " style="width: 200px;"  >
+                <label for="role">I am a:</label>
+                <select class="form-control" name="role" id="role" required>
+                    <option value="customer">Customer</option>
+                    <option value="electrician">Electrician</option>
+                </select>
+                <div class="d-flex justify-content-between mt-4">
+                    <button type="submit" name="action" value="login" class="btn btn-primary">Login</button>
+                    <button type="submit" name="action" value="register" class="btn btn-success">Register</button>
+                </div>
+            </div>
+            
+        </form>
+    </div>
+</body>
+</html>

@@ -1,0 +1,36 @@
+body {
+    background-color: white; /* Light green background */
+    font-family: Arial, sans-serif;
+  }
+
+  .sidebar {
+    height: 100vh;
+    background-color: #fff;
+    padding: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  }
+
+  .sidebar .nav-link {
+    color: #333;
+    font-weight: bold;
+    margin: 5px 0;
+  }
+
+  .sidebar .nav-link:hover {
+    background-color: #d5f5d5;
+    border-radius: 5px;
+    color: #000;
+  }
+
+  .content {
+    padding: 20px;
+  }
+
+  .navbar {
+    background-color: #fff;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+  }
+
+  .dropdown-menu {
+    font-size: 14px;
+  }

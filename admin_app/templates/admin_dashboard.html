@@ -1,0 +1,168 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Admin | Admin Dashboard</title>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css">
+
+  <link href="{% static 'style.css'%}" rel="stylesheet">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta3/dist/css/bootstrap.min.css" rel="stylesheet" />
+    <!-- Bootstrap CSS link -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" />
+
+    <!-- Fontawesome link  -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"
+        integrity="sha512-DTOQO9RWCH3ppGqcWaEA1BIZOC6xxalwEsw9c2QQeAIftl+Vegovlnee1c9QX4TctnWMn13TZye+giMm8e2LwA=="
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons/font/bootstrap-icons.css">
+
+
+    <script src="https://kit.fontawesome.com/b99e675b6e.js"></script>
+    <script src="https://kit.fontawesome.com/your-kit-id.js" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" integrity="sha512-Fo3rlrZj/k7ujTnH/PRp6YJZCrRMTjTj52H8iPpXz/GFgY1KRhxMQAJXlsbo+p9UibG1I5BjUjE3YfQdPzANFg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+
+
+
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+  <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
+  <style>
+
+  /* Sidebar visibility control */
+  .sidebar {
+    transition: transform 0.3s ease;
+    width: 250px;
+  }
+
+  .sidebar.collapsed {
+    transform: translateX(-100%);
+    width: 0;
+  }
+
+  .sidebar.collapsed h4,
+  .sidebar.collapsed .nav {
+    display: none; /* Hide content except the hamburger button */
+  }
+
+  .sidebar .hamburger-btn {
+    position: absolute;
+    top: 10px;
+    left: 25px;
+    z-index: 900; /* Ensure the button is always visible */
+  }
+</style>
+
+</head>
+<body>
+  <div class="container-fluid">
+    <div class="row">
+      <!-- Sidebar -->
+      <nav class="col-md-3 col-lg-2 d-md-block sidebar collapse">
+        <button
+        class="btn btn-primary btn-sm hamburger-btn my-3 mb-0 text-center"
+        id="hamburger-toggle"
+        aria-label="Toggle Sidebar"
+      >
+        &#9776;
+        <span class="dashboard">Dashboard</span>
+      </button>
+
+
+        <ul class="nav flex-column my-5">
+          <!-- Users -->
+          <li class="nav-item">
+            <a class="nav-link" href="#usersSubmenu" data-bs-toggle="collapse">Users</a>
+            <ul class="collapse list-unstyled" id="usersSubmenu">            
+              <li><a class="nav-link ms-3" href="{% url "admin_app:view_users" %}" id="view-customer">View</a></li>
+            </ul>
+          </li>
+
+          <!-- Electrician -->
+          <li class="nav-item">
+            <a class="nav-link" href="#serviceUsersSubmenu" data-bs-toggle="collapse">Electricians </a>
+            <ul class="collapse list-unstyled" id="serviceUsersSubmenu">            
+              <li><a class="nav-link ms-3" href="{% url "admin_app:view_electrician" %}">View</a></li>        
+            </ul>
+          </li>
+          
+          <!-- Events -->
+          <li class="nav-item">
+            <a class="nav-link" href="#eventsSubmenu" data-bs-toggle="collapse">Services</a>
+            <ul class="collapse list-unstyled" id="eventsSubmenu">
+              <li><a class="nav-link ms-3" href="{% url "admin_app:create_service" %}">Create</a></li>
+              <li><a class="nav-link ms-3" href="{% url "admin_app:view_service" %}" id="view-service">View</a></li>
+              <!-- <li><a class="nav-link ms-3" href="#">Create</a></li> -->
+              <!-- <li><a class="nav-link ms-3" href="#" id="view-events">View</a></li> -->
+            </ul>
+          </li>
+         
+
+          <li class="nav-item">
+            <a class="nav-link" href="#bookingsSubmenu" data-bs-toggle="collapse">Bookings</a>
+            <ul class="collapse list-unstyled" id="bookingsSubmenu">        
+              <!-- <li><a class="nav-link ms-3" href="#">View</a></li>               -->
+              <li><a class="nav-link ms-3" href="{% url 'admin_app:admin_view_bookings' %}">View</a></li>       
+            </ul>
+          </li>
+
+           <!-- Other Sections -->
+           <li class="nav-item">
+            <a class="nav-link" href="#packagesSubmenu" data-bs-toggle="collapse">Payments</a>
+            <ul class="collapse list-unstyled" id="packagesSubmenu">     
+              <li><a class="nav-link ms-3" href="#">View</a></li>              
+            </ul>
+          </li>
+
+          <li class="nav-item">
+            <a class="nav-link" href="{% url 'admin_app:admin_logout' %}">Logout</a>
+            
+          </li>
+          <!-- Add more sections as needed -->
+        </ul>
+      </nav>
+
+        <!-- Main Content -->
+        <main class="col-md-9 ms-sm-auto col-lg-9 content">
+          {% comment %} <h2>Welcome to the Admin Dashboard</h2> {% endcomment %}
+          <div id="dynamic-content">  
+            {% block content %}
+            {% endblock %}
+          </div>
+        </main>
+
+    </div>
+  </div>
+
+  {% if admin %}
+    <script>
+      alert("{{message}}");
+    </script>
+  {% endif %}
+
+  <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
+   <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap-icons/font/bootstrap-icons.css"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+  <script>
+
+    document.addEventListener("DOMContentLoaded", function () {
+    const hamburgerToggle = document.getElementById("hamburger-toggle");
+    const sidebar = document.querySelector(".sidebar");
+
+    hamburgerToggle.addEventListener("click", function () {
+      sidebar.classList.toggle("collapsed");
+    });
+  });
+
+  </script>
+</body>
+</html>

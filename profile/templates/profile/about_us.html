@@ -1,0 +1,121 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>About us</title>
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+</head>
+<body>
+    {% if messages %}
+        {% for message in messages %}
+            <script>
+                alert("{{ message }}");
+            </script>
+        {% endfor %}
+    {% endif %}
+    <!-- Navbar -->
+
+    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+        <a class="navbar-brand" href="#">Powerfix Services</a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNav">
+            <ul class="navbar-nav ml-auto">
+                <li class="nav-item"><a class="nav-link" href="{% url 'home'%}">Home</a></li>
+                <li class="nav-item"><a class="nav-link" href="{% url 'about_us' %}">About</a></li>                
+                <li class="nav-item"><a class="nav-link" href="{% url "view_service" %}">Services</a></li>
+                {% if request.session.customer_id %}
+                    <li class="nav-item"><a class="nav-link" href="{% url 'customer_profile' %}">Profile</a></li>   
+                {% endif %}
+             
+                {% if request.session.electrician_id %}
+                    <li class="nav-item"><a class="nav-link" href="{% url 'electrician_profile' %}">Profile</a></li>   
+                {% endif %}
+                
+                {% if request.session.customer_id %}
+                    <li class="nav-item"><a class="nav-link" href="{% url 'customer_logout' %}">Logout</a></li>
+                {% elif request.session.electrician_id %}
+                    <li class="nav-item"><a class="nav-link" href="{% url 'electrician_logout' %}">Logout</a></li>
+                 {% else %}
+                    <li class="nav-item"><a class="nav-link" href="{% url 'login' %}">Login</a></li>
+                {% endif %}
+            </ul>                                
+        </div>
+    </nav>
+    
+  
+
+    <!-- Main content -->
+<!-- About Section -->
+<section class="about-section text-center">
+    <div class="container">
+        <h1 class="mb-4 my-4">About Powerfix Services</h1>
+        <p class="lead">
+            Powerfix Services is dedicated to providing high-quality electrical solutions to our customers. With a team of skilled electricians, we ensure that your electrical needs are met with safety, efficiency, and professionalism.
+        </p>
+    </div>
+</section>
+
+<!-- Mission, Vision, and Services -->
+<section class="py-5">
+    <div class="container">
+        <div class="row text-center mb-5">
+            <div class="col-md-4">
+                <div class="card shadow-lg">
+                    <div class="card-body">
+                        <h3>Our Mission</h3>
+                        <p>
+                            To provide reliable and affordable electrical services, ensuring customer satisfaction and safety in every job we do.
+                        </p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="card shadow-lg">
+                    <div class="card-body">
+                        <h3>Our Vision</h3>
+                        <p>
+                            To become the leading electrical service provider, known for our commitment to quality, safety, and customer care.
+                        </p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="card shadow-lg">
+                    <div class="card-body">
+                        <h3>Our Services</h3>
+                        <p>
+                            We offer a wide range of electrical services, including installations, repairs, maintenance, and emergency services. Whether it's residential or commercial, we've got you covered.
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+ 
+
+  
+
+    <!-- service lists -->
+    <div id="dynamic-content">  
+        {% block content %}
+        {% endblock %}
+      </div>
+
+    <!-- Footer -->
+    <footer class="bg-light text-center p-3">
+        <p>&copy; 2023 Powerfix Services. All rights reserved.</p>
+    </footer>
+
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    <script src="{% static 'js/script.js' %}"></script>
+</body>
+</html>

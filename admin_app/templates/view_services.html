@@ -1,0 +1,34 @@
+{% extends "admin_dashboard.html" %}
+
+{% block content %}
+<h1>Services Table</h1>
+<table id="services-table" class="table table-striped table-bordered mt-4">
+    <thead class="table-dark">
+        <tr>            
+            <th>Service id</th>
+            <th>Name</th>
+            <th>Description</th>
+            <th>Price</th>
+            <th>Electrician</th>
+            <th>Update</th>
+            <th>Delete</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for s in services %}
+        <tr>            
+            <td>{{ s.s_id }}</td>
+            <td>{{ s.s_name }}</td>
+            <td>{{ s.s_description }}</td>
+            <td>{{ s.s_price }}</td>
+            <td>{{ s.e_id.e_fullname }}</td>            
+                 <td><a href="{% url "admin_app:update_service" s.s_id %}" class="btn btn-info" id="update_service">Update</a></td>
+            
+                <td><a href="{% url "admin_app:delete_service" s.s_id %}" class="btn btn-danger" onclick="return confirm('Are you sure you want to delete this Service?')">Delete</a></td>            
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>
+{% endblock %}
+    
+                                

@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Manage Profiles</title>
+</head>
+<body>
+    <h2>Manage Profiles</h2>
+    <h3>Customer Profiles</h3>
+    <ul>
+        {% for customer in customers %}
+        <li>{{ customer.c_fullname }} - {{ customer.c_email }}
+            <a href="{% url 'delete_customer' customer.c_id %}">Delete</a>
+        </li>
+        {% endfor %}
+    </ul>
+    <h3>Electrician Profiles</h3>
+    <ul>
+        {% for electrician in electricians %}
+        <li>{{ electrician.e_fullname }} - {{ electrician.e_email }}
+            <a href="{% url 'delete_electrician' electrician.e_id %}">Delete</a>
+        </li>
+        {% endfor %}
+    </ul>
+</body>
+</html>

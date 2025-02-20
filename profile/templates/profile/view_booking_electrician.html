@@ -1,0 +1,67 @@
+{% extends "profile/profilecommon1.html" %}
+{% load static %}
+{% block other %}
+
+<div class="container mt-5 offset-2 col-md-9" >
+    <h2 class="text-center mb-4">Booking Details</h2>
+
+    <div class="table-responsive">
+        <table id="users-table" class="table table-striped table-bordered">
+            <thead>
+                <tr>
+                    <th>Id</th>
+                    <th>service nm</th>
+                    <th>Customer nm</th>
+                    <th>Address</th>
+                    <th>Amout</th>
+                    <th>Date</th>
+                    <th>Status</th>    
+                    <th>Action</th>                 
+                </tr>
+            </thead>
+            <tbody>
+                {% for b in booking %}
+                <tr>
+                    <td>{{ b.b_id }}</td> 
+                    <td>{{ b.s_id.s_name }}</td>
+                    <td>{{ b.c_id }}</td>
+                    <td>{{ b.c_id.c_address }}</td> 
+                     <td>{{ b.b_amt }}</td> 
+                     <td>{{ b.b_date }}</td> 
+                     <td>{{ b.b_status }}</td> 
+                     <td>     
+                    <!-- {% if b.b_status == "Pending" %} -->
+                        <!-- Pay Button -->
+                        <!-- <form action="{# % url 'update_booking' b.b_id %}" method="post">
+                            {% csrf_token %}
+                            <button type="submit" class="btn btn-success btn-sm">Completed</button>
+                        </form> -->
+                    <!-- #{#% else % }-->
+                        
+                        <!-- <span class="text-muted">Payment Not Available</span> --> 
+                    <!-- {% endif %} -->
+                        {% if b.b_status == "Pending" %}
+                        <!-- Electrician can accept the booking -->
+                        <form action="{% url 'accept_booking' b.b_id %}" method="post">
+                            {% csrf_token %}
+                            <button type="submit" class="btn btn-primary btn-sm">Accept</button>
+                        </form>
+                        {% elif b.b_status == "Accepted" %}
+                        <!-- Electrician can mark booking as completed -->
+                        <form action="{% url 'complete_booking' b.b_id %}" method="post">
+                            {% csrf_token %}
+                            <button type="submit" class="btn btn-warning btn-sm">Mark Completed</button>
+                        </form>
+                        {% endif %}
+                    </td>
+                    
+                    <!-- <td><a href="{#% url 'admin_app:update_user' customer.c_id %}" class="btn btn-info" id="update_user">Update</a></td>
+                    <td><a href="{#% url 'admin_app:delete_user' customer.c_id %}" class="btn btn-danger" onclick="return confirm('Are you sure you want to delete this user?')">Delete</a></td>              -->
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+</div>
+
+{% endblock %}
